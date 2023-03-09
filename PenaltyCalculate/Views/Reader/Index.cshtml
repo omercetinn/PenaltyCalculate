@@ -1,0 +1,59 @@
+﻿@using PenaltyCalculate.Models
+@model List<UserInformation>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2 style="margin-top:20px">Üyeler</h2>
+
+<table id="tbl1" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Adı</th>
+            <th>Soyadı</th>
+            <th>Ülke</th>
+            <th>Kitap Temin Tarihi</th>
+            <th>Teslim Ediliş Tarihi</th>
+            <th>Geç Kalınan Gün</th>
+            <th>Ceza Ücreti</th>
+            <th>Durum</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    @foreach (var m in Model)
+    {
+        <tr>
+
+            <td>@m.Name</td>
+            <td>@m.Surname</td>
+            <td>@m.Country</td>
+            <td>@m.ReceivedDate</td>
+            <td>@m.ReturnDate</td>
+            <td>@m.DelayedTime</td>
+            <td>@m.PenaltyMoney</td>
+            <td>@m.Status</td>
+            <td>
+                <a href="/PenaltyCalculate/ReaderDelete/@m.Id" class="btn btn-danger"><i class="fa fa-trash"></i> Sil</a>
+                <a href="/PenaltyCalculate/ReaderView/@m.Id" class="btn btn-warning"><i class="fa fa-undo"></i> Güncelle</a>
+            </td>
+        </tr>
+
+    }
+</table>
+<br />
+<br />
+
+<a href="/PenaltyCalculate/ReaderAdd" class="btn btn-primary"><i class="fa fa-plus"></i> Yeni Üye Ekle</a>
+<a href="/PenaltyCalculate/ReaderList" class="btn btn-info"><i class="fa fa-print"></i> Yazdır</a>
+
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
+<script>
+    $('#tbl1').dataTable({});
+
+</script>
